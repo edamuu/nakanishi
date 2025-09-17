@@ -1,9 +1,3 @@
- (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
-diff --git a//dev/null b/style.css
-index 0000000000000000000000000000000000000000..24e411546fc3776234a10eb92887e789a815e117 100644
---- a//dev/null
-+++ b/style.css
-@@ -0,0 +1,427 @@
 +:root {
 +  color-scheme: light dark;
 +  --bg-color: #f8fbff;
@@ -433,4 +427,5 @@ index 0000000000000000000000000000000000000000..24e411546fc3776234a10eb92887e789
 +}
  
 EOF
+
 )
