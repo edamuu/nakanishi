@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>少年野球 練習メニュー作成ツール</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>少年野球 練習メニュー作成ツール</h1>
+      <p>
+        少年野球チームの1日の練習メニューを、カテゴリから選択するだけで素早く作成できます。
+        メニューは自由に順番入れ替え・時間調整・メモ追加が可能です。
+      </p>
+    </header>
+
+    <main class="app-main">
+      <section class="menu-selector">
+        <div class="section-header">
+          <h2>メニュー一覧から選択</h2>
+          <div class="search-box">
+            <label for="searchInput">メニュー検索:</label>
+            <input
+              type="search"
+              id="searchInput"
+              placeholder="キーワードで絞り込み (例: ティー、守備、体幹)"
+            />
+          </div>
+        </div>
+        <p class="hint">
+          追加ボタンを押すと、右側の「本日の練習プラン」にメニューが追加されます。
+        </p>
+        <div id="menuList" class="menu-list"></div>
+      </section>
+
+      <section class="plan-builder">
+        <div class="section-header">
+          <h2>本日の練習プラン</h2>
+          <div class="plan-actions">
+            <button id="clearPlanBtn" class="secondary" type="button">すべて削除</button>
+            <button id="copyPlanBtn" type="button">プランをコピー</button>
+          </div>
+        </div>
+        <p id="planSummary" class="plan-summary"></p>
+        <div class="plan-table-wrapper">
+          <table class="plan-table">
+            <thead>
+              <tr>
+                <th scope="col">順番</th>
+                <th scope="col">開始</th>
+                <th scope="col">所要 (分)</th>
+                <th scope="col">カテゴリ</th>
+                <th scope="col">メニュー</th>
+                <th scope="col">メモ</th>
+                <th scope="col" class="action-column">操作</th>
+              </tr>
+            </thead>
+            <tbody id="planList"></tbody>
+          </table>
+          <p id="emptyMessage" class="empty-message">まだメニューが追加されていません。</p>
+        </div>
+
+        <section class="custom-menu">
+          <h3>カスタムメニューを追加</h3>
+          <p>
+            一覧にない練習を追加したい場合は、以下に入力して「プランに追加」を押してください。
+          </p>
+          <form id="customMenuForm">
+            <div class="form-row">
+              <label for="customCategory">カテゴリ</label>
+              <input
+                type="text"
+                id="customCategory"
+                name="category"
+                placeholder="例: レクリエーション"
+                required
+              />
+            </div>
+            <div class="form-row">
+              <label for="customName">メニュー名</label>
+              <input
+                type="text"
+                id="customName"
+                name="name"
+                placeholder="例: ミニゲーム"
+                required
+              />
+            </div>
+            <div class="form-row">
+              <label for="customDuration">目安時間 (分)</label>
+              <input
+                type="number"
+                id="customDuration"
+                name="duration"
+                min="0"
+                step="5"
+                placeholder="例: 20"
+              />
+            </div>
+            <div class="form-row">
+              <label for="customNotes">メモ</label>
+              <input
+                type="text"
+                id="customNotes"
+                name="notes"
+                placeholder="目的や注意点など"
+              />
+            </div>
+            <button type="submit">プランに追加</button>
+          </form>
+        </section>
+
+        <section class="plan-output">
+          <h3>プラン共有用テキスト</h3>
+          <textarea id="planText" rows="10" readonly></textarea>
+        </section>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>保存した内容はブラウザに記録され、次回アクセス時に自動で読み込まれます。</p>
+    </footer>
+
+    <div id="toast" role="status" aria-live="polite"></div>
+
+    <script src="planStore.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
