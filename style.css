@@ -1,5 +1,4 @@
 :root {
-  color-scheme: light dark;
   --bg-color: #f8fbff;
   --surface-color: #ffffff;
   --accent-color: #1e88e5;
@@ -424,4 +423,5 @@ button.secondary {
   .plan-table input[type="text"] {
     min-width: auto;
   }
+
 }
